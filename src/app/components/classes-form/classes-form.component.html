@@ -1,0 +1,131 @@
+<h1 class="m-3">Unos odeljenja ✍</h1>
+
+<form [formGroup]="classForm" (ngSubmit)="onSubmit()" class="p-3">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 mt-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Skolska godina</mat-label>
+          <input matInput [value]="odabranaSkolskaGodina" disabled>
+        </mat-form-field>
+      </div>
+      
+      <div class="col-md-6 mt-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Razred</mat-label>
+          <input matInput [value]="odabraniRazred" disabled>
+        </mat-form-field>
+      </div>
+      
+      <div class="col-md-6 mt-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Naziv odeljenja</mat-label>
+          <input matInput type="text" formControlName="nazivOdeljenja">
+        </mat-form-field>
+      </div>
+      
+      <div class="col-md-6 mt-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Odeljenski staresina</mat-label>
+          <input matInput type="text" formControlName="odeljenskiStaresina">
+        </mat-form-field>
+      </div>
+      
+      <div class="col-md-6 mt-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Vrsta odeljenja</mat-label>
+          <mat-select formControlName="vrstaOdeljenja">
+            <mat-option selected disabled>Izaberi vrstu odeljenja</mat-option>
+            <mat-option *ngFor="let vrstaOdeljenja of vrstaOdeljenjaOptions" [value]="vrstaOdeljenja.id">{{ vrstaOdeljenja.naziv }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+      <div class="col-md-6 mt-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Smena</mat-label>
+          <input matInput type="text" formControlName="smena">
+        </mat-form-field>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mt-3">
+          <mat-checkbox formControlName="kombinovanoOdeljenje">Kombinovano odeljenje</mat-checkbox>
+        </div>
+        <div class="mt-3">
+          <mat-checkbox formControlName="celodnevnaNastava">Celodnevna nastava</mat-checkbox>
+        </div>
+        <div class="mt-3">
+          <mat-checkbox formControlName="izdvojenoOdeljenje" (change)="$event.checked">
+            Izdvojeno odeljenje
+          </mat-checkbox>
+          <div class="mt-2" *ngIf="classForm.get('izdvojenoOdeljenje')?.value">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Naziv izdvojene skole</mat-label>
+              <input matInput type="text" formControlName="nazivIzdvojeneSkole">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="mt-3">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Jezik nastave</mat-label>
+            <mat-select formControlName="jezikNastave">
+              <mat-option value="0" selected disabled>Izaberi jezik nastave</mat-option>
+              <mat-option *ngFor="let jezikNastave of jezikNastaveOptions" [value]="jezikNastave.id">{{ jezikNastave.naziv }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        
+        <div class="mt-3">
+          <mat-checkbox formControlName="dvojezicnoOdeljenje" (change)="$event.checked">
+            Dvojezično odeljenje
+          </mat-checkbox>
+          <div class="mt-2" *ngIf="classForm.get('dvojezicnoOdeljenje')?.value">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Prvi strani jezik</mat-label>
+              <mat-select formControlName="prviStraniJezik">
+                <mat-option value="0" selected disabled>Izaberi prvi strani jezik</mat-option>
+                <mat-option *ngFor="let prviStraniJezik of prviStraniJezikOptions" [value]="prviStraniJezik.id">{{ prviStraniJezik.naziv }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row mt-5">
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Ukupan broj učenika</mat-label>
+          <input matInput type="text" formControlName="ukBrUcenika" readonly>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Broj učenika</mat-label>
+          <input matInput type="text" formControlName="brUcenika" readonly>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Broj učenica</mat-label>
+          <input matInput type="text" formControlName="brUcenica" readonly>
+        </mat-form-field>
+      </div>
+    </div>
+    
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <button mat-raised-button color="warn" class="me-2" [routerLink]="['/']">❌ Odustani</button>
+      </div>
+      <div class="col-md-6 text-end">
+        <button mat-raised-button color="primary" type="submit">✔ Sačuvaj</button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,63 @@
+<h1 class="m-3">Unos razreda ✍</h1>
+
+<form [formGroup]="gradeForm" (ngSubmit)="onSubmit()" class="p-3">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-md-6 mt-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Skolska godina</mat-label>
+          <mat-select formControlName="skolskaGodinaId" required>
+            <mat-option disabled selected>Izaberi skolsku godinu</mat-option>
+            <mat-option *ngFor="let godina of skolskaGodinaOption" [value]="godina.id">{{ godina.naziv }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    <div class="col-md-6 mt-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Razred</mat-label>
+          <mat-select formControlName="razredId" required>
+            <mat-option disabled selected>Izaberi razred</mat-option>
+            <mat-option *ngFor="let razred of razredOption" [value]="razred.id">{{ razred.naziv }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 mt-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Program</mat-label>
+          <mat-select formControlName="programId" required>
+            <mat-option disabled selected>Izaberi program</mat-option>
+            <mat-option *ngFor="let program of programOption" [value]="program.id">{{ program.naziv }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mt-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Ukupan broj učenika</mat-label>
+          <input matInput type="number" [value]="" disabled readonly>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 mt-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Ukupan broj odeljenja</mat-label>
+          <input matInput type="number" [value]="" disabled readonly>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <button mat-raised-button color="warn" class="me-2" [routerLink]="['/']">❌ Odustani</button>
+      </div>
+      <div class="col-md-6 text-end">
+        <button mat-raised-button color="primary" type="submit">✔ Sačuvaj</button>
+      </div>
+    </div>
+  </div>
+</form>
